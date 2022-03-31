@@ -12,7 +12,13 @@ const config = {
 		handler(warning);
 	},
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		prerender: {
+			onError: ({ status, path, referrer, referenceType }) => {
+				if (path.startsWith('/blog')) throw new Error('Missing a blog page!');
+				console.warn(`${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`);
+			}
+		}
 	},
 	plugins: [
 		svelte({
