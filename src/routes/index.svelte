@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
 	export const prerender = true;
 	import Dock from '$lib/components/Dock/Dock.svelte';
+	import Menubar from '$lib/components/Menubar/Menubar.svelte';
 </script>
 
 <svelte:head>
@@ -19,6 +20,7 @@
 		style="width: 1px; height: 1px; position: fixed; bottom: 0; left: 0"
 	/>
 	<!-- Just for loading -->
+	<Menubar />
 	<Dock />
 </main>
 
