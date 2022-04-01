@@ -28,7 +28,7 @@
 	#action-button {
 		position: relative;
 		top: 0;
-		right: 190px;
+		right: 170px;
 		padding-top: 4px;
 		height: 20px;
 		width: 20px;

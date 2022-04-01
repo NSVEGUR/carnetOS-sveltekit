@@ -53,3 +53,32 @@ input {
 p {
 	font-size: var(--primary-font-size);
 }
+
+.drop {
+	backdrop-filter: blur(20px);
+	color: var(--system-text-color);
+	font-size: 13px;
+	width: 200px;
+	position: absolute;
+	top: 41px;
+	left: 0px;
+	padding: 10px 5px;
+	background: var(--system-transparent-color-primary);
+	border-radius: 8px;
+	box-shadow: var(--shadow-effect);
+	display: none;
+	flex-direction: column;
+	.drop-div {
+		margin: 3px 0;
+		background: var(--system-transparent-color-secondary-op);
+		height: 0.5px;
+		width: 100%;
+	}
+	.drop-link {
+		border-radius: 6px;
+
+		&:hover {
+			background: var(--system-color);
+		}
+	}
+}
