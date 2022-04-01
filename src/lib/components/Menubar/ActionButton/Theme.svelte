@@ -1,12 +1,28 @@
+<script lang="ts">
+	let focus: boolean = false;
+	function switchTheme() {
+		document.body.classList.toggle('light-theme');
+	}
+	function switchFocus() {
+		const glyph: HTMLElement = document.getElementById('focus');
+		if (!focus) {
+			glyph.style.display = 'block';
+		} else {
+			glyph.style.display = 'none';
+		}
+		focus = !focus;
+	}
+</script>
+
 <div id="theme">
-	<div class="mode">
+	<div class="mode" on:click={switchTheme}>
 		<div class="mode-glyph">
 			<i class="fas fa-adjust" />
 		</div>
 		<div>Dark mode</div>
 	</div>
-	<div class="focus">
-		<div class="focus-glyph">
+	<div class="focus" on:click={switchFocus}>
+		<div class:focusing={focus} class="focus-glyph">
 			<i class="fas fa-moon" />
 		</div>
 		<div>Focus</div>
@@ -34,8 +50,8 @@
 			gap: 10px;
 			justify-content: center;
 		}
-		.mode div:first-child,
-		.focus div:first-child {
+		.mode-glyph,
+		.focus-glyph {
 			background: var(--system-transparent-color-primary-op);
 			padding: 5px;
 			height: 30px;
@@ -44,7 +60,10 @@
 			display: grid;
 			place-items: center;
 		}
-		.mode div:first-child {
+		.mode-glyph {
+			background: var(--theme-glyph-bg);
+		}
+		.focusing {
 			background: var(--system-color);
 		}
 	}

@@ -38,8 +38,9 @@ body {
 	-moz-user-select: -moz-none;
 	-ms-user-select: none;
 	user-select: none;
-	background: url('/dark-mac-bg.jpeg') center center no-repeat;
+	background: var(--desktop-wallpaper) center center no-repeat;
 	background-size: cover;
+	transition: background 0.3s ease;
 }
 h1,
 h2 {
@@ -81,4 +82,8 @@ p {
 			background: var(--system-color);
 		}
 	}
+}
+
+.links-hover {
+	background: var(--system-transparent-color-primary-op);
 }

@@ -1,4 +1,19 @@
-<div id="color">
+<script lang="ts">
+	function controlSystemColor(e: any) {
+		if (e.target?.classList.contains('color')) {
+			const color = e.target;
+			const colorCircles: NodeListOf<HTMLElement> = document.querySelectorAll('.color > div');
+			const newColor = getComputedStyle(color).getPropertyValue('background');
+			document.documentElement.style.setProperty('--system-color', newColor);
+			colorCircles.forEach((circle) => {
+				circle.style.display = 'none';
+			});
+			color.querySelector('div').style.display = 'block';
+		}
+	}
+</script>
+
+<div id="color" on:click={controlSystemColor}>
 	<h3>System Color</h3>
 	<div class="colors">
 		<div class="orange-div color-div">

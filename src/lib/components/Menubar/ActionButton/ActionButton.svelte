@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Theme from './Theme.svelte';
 	import Color from './Color.svelte';
-	import Sound from './Sound.svelte';
 	import Music from './Music.svelte';
 	function dropActionMenu() {
 		const actionDrop: HTMLElement = document.querySelector('.action-drop');
@@ -19,7 +18,6 @@
 	<div class="action-drop">
 		<Theme />
 		<Color />
-		<Sound />
 		<Music />
 	</div>
 </div>
@@ -39,7 +37,7 @@
 		.action-drop {
 			position: absolute;
 			top: 41px;
-			left: -170px;
+			right: -150px;
 			width: 350px;
 			font-weight: 500;
 			color: var(--system-text-color);
@@ -67,13 +65,14 @@
 			right: -6px;
 		}
 		.action-drop {
-			left: auto;
-			right: -15px;
+			right: auto;
+			left: -330px;
 		}
 	}
 	@media screen and (max-width: 340px) {
 		.action-drop {
 			width: 330px;
+			left: -280px;
 		}
 	}
 </style>

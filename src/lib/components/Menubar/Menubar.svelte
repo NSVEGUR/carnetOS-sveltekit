@@ -11,15 +11,50 @@
 	import Help from './Nav/Help.svelte';
 	import { onMount } from 'svelte';
 
+	function resetMenu(menuIcons: NodeListOf<HTMLElement>) {
+		menuIcons.forEach((icon: HTMLElement) => {
+			icon.classList.remove('links-hover');
+			const menuDrop: HTMLElement = icon.querySelector('.drop');
+			const actionDrop: HTMLElement = document.querySelector('.action-drop');
+			menuDrop.style.display = 'none';
+			actionDrop.style.display = 'none';
+		});
+	}
+	function showMenuDrop(e: any) {
+		const menuIcons: NodeListOf<HTMLElement> = document.querySelectorAll('.menu-icons');
+		resetMenu(menuIcons);
+		e.target.classList.add('links-hover');
+		e.target.querySelector('.drop').style.display = 'block';
+	}
+	function removeHoverListeners(menuIcons: NodeListOf<HTMLElement>) {
+		menuIcons.forEach((icon) => {
+			icon.removeEventListener('mouseenter', showMenuDrop);
+		});
+	}
+	function addHoverListeners(menuIcons: NodeListOf<HTMLElement>) {
+		menuIcons.forEach((icon) => {
+			icon.addEventListener('mouseenter', showMenuDrop);
+		});
+	}
+
 	onMount(() => {
-		const menuIcons = document.querySelectorAll('.menu-icons');
-		const actionDrop: HTMLElement = document.querySelector('.action-drop');
+		const menuIcons: NodeListOf<HTMLElement> = document.querySelectorAll('.menu-icons');
 		window.addEventListener('mouseup', (e: any) => {
 			menuIcons.forEach((icon) => {
 				if (e.target != icon && e.target.parentNode != icon) {
-					actionDrop.style.display = 'none';
+					resetMenu(menuIcons);
+					removeHoverListeners(menuIcons);
 				}
 			});
+		});
+		document.querySelector('nav').addEventListener('click', (e: any) => {
+			if (e.target.closest('.menu-icons')) {
+				const el = e.target.closest('.menu-icons');
+				resetMenu(menuIcons);
+				el.classList.add('links-hover');
+				el.querySelector('.drop').style.display = 'block';
+				addHoverListeners(menuIcons);
+			}
 		});
 	});
 </script>
@@ -87,7 +122,7 @@
 		position: fixed;
 		top: 0;
 		color: var(--system-text-color);
-		right: 220px;
+		right: 205px;
 		padding-top: 2px;
 		height: 20px;
 		width: 20px;
@@ -102,6 +137,9 @@
 		#menu nav {
 			max-width: 100%;
 			padding: 0 20px;
+		}
+		#focus {
+			right: 220px;
 		}
 	}
 	@media screen and (max-width: 920px) {
